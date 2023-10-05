@@ -43,8 +43,6 @@ export function App() {
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
-  console.log(contacts);
-  console.log(getVisibleContacts());
 
   return (
     <div>
