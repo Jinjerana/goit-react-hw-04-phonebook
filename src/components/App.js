@@ -9,7 +9,7 @@ export function App() {
     () => JSON.parse(window.localStorage.getItem('contacts')) ?? []
   );
 
-  const [filter, setFilter] = useState(' ');
+  const [filter, setFilter] = useState('');
 
   useEffect(() => {
     window.localStorage.setItem('contacts', JSON.stringify(contacts));
@@ -38,15 +38,24 @@ export function App() {
     setFilter(e.target.value.toLowerCase());
   };
 
-  const getVisibleContacts = () =>
-    contacts.filter(contact => contact.name.toLowerCase().includes(filter));
+  const getVisibleContacts = () => {
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter)
+    );
+  };
+  console.log(contacts);
+  console.log(getVisibleContacts());
+
   return (
     <div>
       <h1>Phonebook</h1>
       <Forma onAddContact={addContact} />
       <h2>Contacts</h2>
       <Filter value={filter} onChange={changeFilter} />
-      <ContactList onFilter={getVisibleContacts()} onDelete={deleteContact} />
+      <ContactList
+        onVisibleContacts={getVisibleContacts()}
+        onDelete={deleteContact}
+      />
     </div>
   );
 }
