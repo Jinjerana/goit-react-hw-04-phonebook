@@ -40,7 +40,7 @@ export function App() {
 
   const getVisibleContacts = () => {
     return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter)
+      contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
   console.log(contacts);
